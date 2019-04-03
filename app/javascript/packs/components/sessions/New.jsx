@@ -55,7 +55,7 @@ export default class SessionNew extends React.Component {
           <input type="text" value={this.state.login} onChange={this.handleLoginChange} />
         </label>
         <label>
-          Mot de passe:
+          Password:
           <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
         </label>
         <input type="submit" value="Se connecter" />
