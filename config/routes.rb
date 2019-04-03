@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  # root "front/sessions#new"
+  root "front/home#index"
+
   scope module: :front do
-    resources :sessions, only: %i[create new]
+    resources :home, only: %i[index]
   end
 
   namespace :api, defaults: { format: :json } do
