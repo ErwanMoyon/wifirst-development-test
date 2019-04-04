@@ -9,13 +9,19 @@ export default class OpenWeatherIndex extends React.Component {
     super(props);
 
     this.state = {
-      forecast: null
+      forecast: null,
+      isSearching: false
     };
 
-    this.callbackSearchBar = this.callbackSearchBar.bind(this);
+    this.searchWeather = this.searchWeather.bind(this);
+    this.reloadPage = this.reloadPage.bind(this);
   }
 
-  callbackSearchBar(searchText) {
+  componentWillMount() {
+    this.searchWeather("Paris", false);
+  }
+
+  searchWeather(searchText, isSearching) {
     var _this = this;
 
     // Call Open Weather API
@@ -30,7 +36,8 @@ export default class OpenWeatherIndex extends React.Component {
       },
       success: function(response) {
         _this.setState({
-          forecast: response
+          forecast: response,
+          isSearching: isSearching
         });
       },
       error: function(error) {
@@ -39,13 +46,21 @@ export default class OpenWeatherIndex extends React.Component {
     })
   }
 
+  reloadPage() {
+    this.searchWeather("Paris", false);
+  }
+
   render() {
-    var {forecast} = this.state;
+    var {forecast, isSearching} = this.state;
 
     return (
       <div>
-        <SearchBar callback={this.callbackSearchBar} />
-        <DisplayForecast forecast={forecast} />
+        <SearchBar callback={this.searchWeather} />
+        <button onClick={this.reloadPage}>Réinitialiser</button>
+        <DisplayForecast
+          forecast={forecast}
+          isSearching={isSearching}
+        />
       </div>
     )
   }

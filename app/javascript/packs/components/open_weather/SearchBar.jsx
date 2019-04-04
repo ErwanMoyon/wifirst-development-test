@@ -17,7 +17,7 @@ export default class SearchBar extends React.Component {
     event.preventDefault();
 
     // Look For new weather
-    this.props.callback(this.state.searchText);
+    this.props.callback(this.state.searchText, true);
   }
 
   handleChange(event) {
