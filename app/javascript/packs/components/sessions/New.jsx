@@ -51,11 +51,11 @@ export default class SessionNew extends React.Component {
     return (
       <form onSubmit={this.handLogin}>
         <label>
-          Login:
+          Email :
           <input type="text" value={this.state.login} onChange={this.handleLoginChange} />
         </label>
         <label>
-          Password:
+          Mot de passe :
           <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
         </label>
         <input type="submit" value="Se connecter" />

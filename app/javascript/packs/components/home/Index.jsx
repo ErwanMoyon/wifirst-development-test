@@ -13,19 +13,38 @@ export default class HomeIndex extends React.Component {
     }
 
     this.callbackLogin = this.callbackLogin.bind(this);
+    this.getSettings = this.getSettings.bind(this);
   }
 
   componentWillMount() {
     var jwt = sessionStorage.getItem("jwt");
 
-    if (jwt)
+    if (jwt) {
+      this.getSettings();
       this.setState({jwt: jwt});
+    }
+  }
+
+  getSettings() {
+    const jwt = sessionStorage.getItem("jwt");
+
+    $.ajax({
+      url: "api/v1/setting/",
+      type: "GET",
+      beforeSend: function(request) {
+        request.setRequestHeader("Authorization", "Bearer " + jwt);
+      },
+      success: function(response) {
+        sessionStorage.setItem("setting", JSON.stringify(response));
+      }
+    })
   }
 
   callbackLogin(jwt) {
     // Store locally the jwt token to keep the session active
     sessionStorage.setItem("jwt", jwt);
 
+    this.getSettings();
     this.setState({jwt: jwt});
   }
 

@@ -6,5 +6,15 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def authenticated_header(user)
+    token = Knock::AuthToken.new(payload: { sub: user.id }).token
+
+    {
+      "Authorization": "Bearer #{token}"
+    }
+  end
+
+  def json_response(body)
+      ActiveSupport::JSON.decode body
+  end
 end

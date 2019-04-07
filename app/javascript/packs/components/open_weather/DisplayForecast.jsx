@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 export default class DisplayForecast extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.defaultDisplay = this.defaultDisplay.bind(this);
+  }
   /**
    * Display the next days weather depending on:
    * If user preferences and is searching for a city weather
@@ -33,6 +38,8 @@ export default class DisplayForecast extends React.Component {
   defaultDisplay(weather) {
     var currentDate = new Date();
     var fifthDay = currentDate.getDate() + 4;
+
+    var weatherDate = new Date(weather.dt * 1000);
 
     // Display only weather during the work hours
     if (weatherDate.getDate() <= fifthDay) {
@@ -76,7 +83,7 @@ export default class DisplayForecast extends React.Component {
 
         </div>
       )
-    else
+    else {
       // Get forecast weather for next working time days
       const result = forecast.list.filter(keepDailyTime);
 
@@ -86,5 +93,6 @@ export default class DisplayForecast extends React.Component {
           {result.map(this.defaultDisplay)}
         </div>
       );
+    }
   }
 }
