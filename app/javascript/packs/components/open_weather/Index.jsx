@@ -22,7 +22,9 @@ export default class OpenWeatherIndex extends React.Component {
   }
 
   componentWillMount() {
-    this.searchWeather("Paris", false);
+    const defaultSearch = JSON.parse(sessionStorage.getItem("setting")).city || "Paris";
+
+    this.searchWeather(defaultSearch, false);
   }
 
   searchWeather(searchText, isSearching) {

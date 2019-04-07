@@ -31,16 +31,14 @@ export default class Settings extends React.Component {
         }
       },
       success: function(response) {
-        console.log(response);
         sessionStorage.setItem("setting", JSON.stringify(response));
-        console.log("success");
       }
     })
   }
 
   render() {
     const setting = JSON.parse(sessionStorage.getItem("setting")) || {};
-    
+
     return (
       <div>
         <button onClick={this.backToHome}>Retour</button>
