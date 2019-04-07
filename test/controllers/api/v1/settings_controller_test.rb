@@ -43,7 +43,7 @@ module Api
         assert_equal @user_1.setting.city, "Berlin"
 
         # Get settings
-        get "/api/v1/settings/" + @user_1.id.to_s,
+        get "/api/v1/settings/",
             headers: authenticated_header(@user_1)
 
         assert_response :success
@@ -67,7 +67,7 @@ module Api
       end
 
       test "should be connected to get settings" do
-        get "/api/v1/settings/" + @user_1.id.to_s
+        get "/api/v1/settings/"
 
         assert_response :unauthorized
       end

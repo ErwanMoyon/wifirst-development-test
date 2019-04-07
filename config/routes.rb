@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :settings, only: %i[create show]
+      resources :settings, only: %i[create]
+      get "settings" => "settings#show"
       resources :user_token, only: %i[create]
     end
   end

@@ -29,7 +29,7 @@ export default class HomeIndex extends React.Component {
     const jwt = sessionStorage.getItem("jwt");
 
     $.ajax({
-      url: "api/v1/setting/",
+      url: "api/v1/settings/",
       type: "GET",
       beforeSend: function(request) {
         request.setRequestHeader("Authorization", "Bearer " + jwt);
