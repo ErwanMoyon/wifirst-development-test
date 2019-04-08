@@ -26,11 +26,18 @@ export default class SearchBar extends React.Component {
 
   render() {
     return(
-      <div>
-        <input type="text" onChange={this.handleChange} />
-        <button onClick={this.submitSearch}>
-          Lancer la recherche
-        </button>
+      <div id="search-bar" className="form-group row justify-content-center">
+        <div className="col-6">
+          <input
+            type="text"
+            onChange={this.handleChange}
+          />
+          <button
+            className="btn-primary"
+            onClick={this.submitSearch}>
+            Lancer la recherche
+          </button>
+        </div>
       </div>
     )
   }

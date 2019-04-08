@@ -40,19 +40,35 @@ export default class Settings extends React.Component {
     const setting = JSON.parse(sessionStorage.getItem("setting")) || {};
 
     return (
-      <div>
-        <button onClick={this.backToHome}>Retour</button>
-        <form onSubmit={this.updateSettings}>
-          <label>
-            Ville :
-            <input
-              ref={el => this.city = el}
-              type="text"
-              defaultValue={setting.city}
-            />
-          </label>
-          <input type="submit" value="Sauvegarder" />
-        </form>
+      <div className="default-top">
+        <h1>Mes paramètres</h1>
+        <button
+          className="btn-secondary"
+          onClick={this.backToHome}>
+          Retour
+        </button>
+        <div className="row justify-content-center" >
+          <div className="col-6">
+            <form onSubmit={this.updateSettings}>
+              <div className="form-group">
+                <label>
+                  Ville :
+                </label>
+                <input
+                  className="form-control"
+                  ref={el => this.city = el}
+                  type="text"
+                  defaultValue={setting.city}
+                />
+              </div>
+              <input
+                className="btn-primary"
+                type="submit"
+                value="Sauvegarder"
+              />
+            </form>
+          </div>
+        </div>
       </div>
     )
   }

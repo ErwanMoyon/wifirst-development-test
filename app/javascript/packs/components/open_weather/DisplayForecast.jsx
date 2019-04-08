@@ -20,17 +20,14 @@ export default class DisplayForecast extends React.Component {
     // Display only tomorrow weather
     if (weatherDate.getDate() == tomorrowDay) {
       return (
-        <li key={weather.dt}>
-          {weather.dt_txt} :
-          <ul>
-            <li>
-              Température : {weather.main.temp}°c
-            </li>
-            <li>
-              Condition météorologique : {weather.weather[0].description}
-            </li>
-          </ul>
-        </li>
+        <tr key={weather.dt}>
+          <td>
+            {weather.dt_txt}
+          </td>
+          <td>
+            {weather.main.temp}°c - {weather.weather[0].description}
+          </td>
+        </tr>
       )
     }
   }
@@ -44,17 +41,14 @@ export default class DisplayForecast extends React.Component {
     // Display only weather during the work hours
     if (weatherDate.getDate() <= fifthDay) {
       return (
-        <li key={weather.dt}>
-          {weather.dt_txt} :
-          <ul>
-            <li>
-              Température : {weather.main.temp}°c
-            </li>
-            <li>
-              Condition météorologique : {weather.weather[0].description}
-            </li>
-          </ul>
-        </li>
+        <tr key={weather.dt}>
+          <td>
+            {weather.dt_txt}
+          </td>
+          <td>
+            {weather.main.temp}°c - {weather.weather[0].description}
+          </td>
+        </tr>
       )
     }
   }
@@ -75,11 +69,15 @@ export default class DisplayForecast extends React.Component {
 
     if (isSearching)
       return (
-        <div>
-          La météo de {forecast.city.name} de demain :
-          <ul>
-            {forecast.list.map(this.forecastDisplayTomorrow)}
-          </ul>
+        <div className="display-forecast">
+          <div className="title">
+            La météo de <b>{forecast.city.name}</b> de demain :
+          </div>
+          <table className="table table-striped">
+            <tbody>
+              {forecast.list.map(this.forecastDisplayTomorrow)}
+            </tbody>
+          </table>
 
         </div>
       )
@@ -88,9 +86,15 @@ export default class DisplayForecast extends React.Component {
       const result = forecast.list.filter(keepDailyTime);
 
       return (
-        <div>
-          La météo de {forecast.city.name} sur les 5 prochains jours sera :
-          {result.map(this.defaultDisplay)}
+        <div className="display-forecast">
+          <div className="title">
+            La météo de <b>{forecast.city.name}</b> sur les 5 prochains jours sera :
+          </div>
+          <table className="table table-striped">
+            <tbody>
+              {result.map(this.defaultDisplay)}
+            </tbody>
+          </table>
         </div>
       );
     }

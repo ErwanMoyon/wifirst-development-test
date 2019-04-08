@@ -52,15 +52,23 @@ export default class HomeIndex extends React.Component {
     var {jwt} = this.state;
 
     if (jwt)
-      return <OpenWeatherIndex />;
+      return (
+        <div className="container">
+          <OpenWeatherIndex />
+        </div>
+      );
     else
-      return <SessionNew callbackLogin={this.callbackLogin} />;
+      return (
+        <div className="container">
+          <SessionNew callbackLogin={this.callbackLogin} />
+        </div>
+      );
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <HomeIndex />,
-    document.body.appendChild(document.createElement('div')),
+    document.getElementById("root"),
   )
 })

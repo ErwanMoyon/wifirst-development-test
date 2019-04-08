@@ -16,3 +16,6 @@
 // const imagePath = (name) => images(name, true)
 
 // Support component names relative to this directory:
+
+import "bootstrap";
+import "./stylesheets.scss";

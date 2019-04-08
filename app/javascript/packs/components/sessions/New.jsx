@@ -49,16 +49,37 @@ export default class SessionNew extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handLogin}>
-        <label>
-          Email :
-          <input type="text" value={this.state.login} onChange={this.handleLoginChange} />
-        </label>
-        <label>
-          Mot de passe :
-          <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-        </label>
-        <input type="submit" value="Se connecter" />
-      </form>    )
+      <div className="row justify-content-center default-top">
+        <h1>Connexion</h1>
+        <div className="col-6">
+          <form>
+            <div className="form-group">
+              <label>Email :</label>
+              <input
+                className="form-control"
+                type="text"
+                value={this.state.login}
+                onChange={this.handleLoginChange}
+              />
+            </div>
+            <div className="form-group">
+              <label> Mot de passe : </label>
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.handlePasswordChange}
+                className="form-control"
+              />
+            </div>
+            <button
+              className="btn-primary"
+              type="submit"
+              onClick={this.handLogin}>
+              Se connecter
+            </button>
+          </form>
+        </div>
+      </div>
+    )
   }
 }

@@ -53,7 +53,9 @@ export default class OpenWeatherIndex extends React.Component {
   }
 
   reloadPage() {
-    this.searchWeather("Paris", false);
+    const defaultSearch = JSON.parse(sessionStorage.getItem("setting")).city || "Paris";
+
+    this.searchWeather(defaultSearch, false);
   }
 
   settingPage() {
@@ -77,11 +79,22 @@ export default class OpenWeatherIndex extends React.Component {
       )
     } else {
       return (
-        <div>
-
+        <div className="default-top">
+          <h1>La météo</h1>
           <SearchBar callback={this.searchWeather} />
-          <button onClick={this.reloadPage}>Réinitialiser</button>
-          <button onClick={this.settingPage}>Mes paramètres</button>
+          <div id="secondary-buttons">
+            <button
+              className="btn-secondary"
+              onClick={this.reloadPage}>
+              Réinitialiser
+            </button>
+            <button
+              className="btn-secondary"
+              onClick={this.settingPage}>
+              Mes paramètres
+            </button>
+          </div>
+
           <DisplayForecast
             forecast={forecast}
             isSearching={isSearching}
