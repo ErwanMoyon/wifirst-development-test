@@ -22,7 +22,8 @@ export default class OpenWeatherIndex extends React.Component {
   }
 
   componentWillMount() {
-    const defaultSearch = JSON.parse(sessionStorage.getItem("setting")).city || "Paris";
+    var storage = sessionStorage.getItem("setting");
+    const defaultSearch = (storage != "null") ? JSON.parse(storage).city : "Paris";
 
     this.searchWeather(defaultSearch, false);
   }
@@ -53,7 +54,8 @@ export default class OpenWeatherIndex extends React.Component {
   }
 
   reloadPage() {
-    const defaultSearch = JSON.parse(sessionStorage.getItem("setting")).city || "Paris";
+    var storage = sessionStorage.getItem("setting");
+    const defaultSearch = (storage != "null") ? JSON.parse(storage).city : "Paris";
 
     this.searchWeather(defaultSearch, false);
   }
