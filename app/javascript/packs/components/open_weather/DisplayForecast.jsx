@@ -58,6 +58,16 @@ export default class DisplayForecast extends React.Component {
 
     if (forecast == null) return null;
 
+    var averageTemperature = function(weathers) {
+      var average = 0;
+
+      for (var i = 0; i < weathers.length; i++) {
+        average += weathers[i].main.temp;
+      }
+
+      return (Math.round(average / weathers.length));
+    }
+
     /**
      * Only show weather on daily work time
      */
@@ -88,7 +98,8 @@ export default class DisplayForecast extends React.Component {
       return (
         <div className="display-forecast">
           <div className="title">
-            La météo de <b>{forecast.city.name}</b> sur les 5 prochains jours sera :
+            Sur les 5 prochains jours, il fera en moyenne <b>{ averageTemperature(result) }°c </b>
+            à <b>{forecast.city.name}</b>
           </div>
           <table className="table table-striped">
             <tbody>
